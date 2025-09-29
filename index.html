@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Web1 Auth | Início</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; }
+        h1 { color: #333; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔐 Sistema de Autenticação Multi-Método</h1>
+        <p>Bem-vindo ao laboratório de autenticação! Esta aplicação suporta Login por Sessão, JWT e Basic Auth na mesma rota protegida.</p>
+        
+        <h2>Acesso</h2>
+        <p>Clique abaixo para acessar a página de login e começar:</p>
+        
+        <ul>
+            <li><a href="{{ url_for('login') }}">Fazer Login</a></li>
+        </ul>
+
+        <h2>Testes de API (JWT / Basic Auth)</h2>
+        <p>Use ferramentas como cURL ou Postman para testar as rotas:</p>
+        <ul>
+            <li>**Rota Protegida:** `/dashboard`</li>
+            <li>**Gerenciamento (Admin):** `/users`</li>
+        </ul>
+
+        <p>Lembre-se de verificar seu terminal para ver os **Logs DEBUG**!</p>
+    </div>
+</body>
+</html>

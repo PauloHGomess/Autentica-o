@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 2rem; }
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; border: 1px solid #007bff; border-radius: 8px; background-color: #f8f9fa; }
+        h1 { color: #007bff; }
+        code { background-color: #e9ecef; padding: 2px 4px; border-radius: 3px; }
+        .token-box { background-color: #fff; padding: 10px; border: 1px solid #ddd; word-break: break-all; margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>✅ Dashboard (Acesso Permitido)</h1>
+        
+        <p>Parabéns, você acessou uma **Rota Protegida**!</p>
+
+        <h2>Informações do Usuário</h2>
+        <ul>
+            <li>**Usuário:** <code>{{ username }}</code></li>
+            <li>**Permissão (Role):** <code>{{ role }}</code></li>
+            <li>**Método de Autenticação Utilizado:** <strong>{{ auth_method }}</strong></li>
+        </ul>
+        
+        {% if auth_method == "Session" and jwt_token and jwt_token != "Não gerado nesta requisição." %}
+            <h2>🔑 Token JWT Gerado (Para Testes de API)</h2>
+            <p>Use este token no cabeçalho `Authorization: Bearer [token]` para acessar rotas protegidas com ferramentas como Postman.</p>
+            <div class="token-box">
+                {{ jwt_token }}
+            </div>
+        {% endif %}
+
+        {% if role == "admin" %}
+            <h2>⚙️ Rota de Administração</h2>
+            <p>Como administrador, você pode acessar a API de gerenciamento de usuários:</p>
+            <ul>
+                <li><code>GET /users</code> (via API)</li>
+                <li><code>POST /users</code> (via API)</li>
+            </ul>
+        {% endif %}
+        
+        <form action="{{ url_for('logout') }}" method="POST" style="margin-top: 20px;">
+            <button type="submit">Sair (Logout)</button>
+        </form>
+    </div>
+</body>
+</html>
